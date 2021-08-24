@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from "redux";
 import ReduxThunk from "redux-thunk";
-import PostsReducer from "./reducers/index";
+import RootReducer from "./reducers";
 
-export const middleWares = [ReduxThunk];
+export const middlewares = [ReduxThunk];
 
-export const createStoreWithMiddleware = applyMiddleware(...middleWares)(
+export const createStoreWithMiddleware = applyMiddleware(...middlewares)(
   createStore
 );
 
-export const store = createStoreWithMiddleware(PostsReducer);
+export const store = createStoreWithMiddleware(RootReducer);
