@@ -1,6 +1,6 @@
 import moxios from "moxios";
-import { testStore } from "./../../Utils";
-import { fetchPosts } from "./../actions";
+import { testStore } from "../../Utils";
+import { fetchPosts } from "../actions";
 
 describe("fetchPosts action", () => {
   beforeEach(() => {
@@ -37,8 +37,8 @@ describe("fetchPosts action", () => {
     });
 
     return store.dispatch(fetchPosts()).then(() => {
-      const newState = store.getState();
-      expect(newState.posts).toBe(expectedState);
+      const allNewState = store.getState();
+      expect(allNewState.posts).toBe(expectedState);
     });
   });
 });
