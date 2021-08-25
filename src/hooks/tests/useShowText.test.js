@@ -2,13 +2,25 @@ import { useShowText } from "../useShowText";
 import { act, renderHook } from "@testing-library/react-hooks";
 
 describe("useShowText hook", () => {
-  it("changes value to true on button click", () => {
+  let res;
+  beforeEach(() => {
     const { result } = renderHook(useShowText);
+    res = result;
+  });
 
+  it("changes value to true on button click", () => {
     act(() => {
-      result.current.setShow(true);
+      res.current.setShow(true);
     });
 
-    expect(result.current.show).toBe(true);
+    expect(res.current.show).toBe(true);
+  });
+
+  it("changes value to false on button click", () => {
+    act(() => {
+      res.current.setShow(false);
+    });
+
+    expect(res.current.show).toBe(false);
   });
 });
