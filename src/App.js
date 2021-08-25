@@ -6,6 +6,7 @@ import ListItem from "./component/listItem";
 import { connect } from "react-redux";
 import { fetchPosts } from "./actions";
 import "./app.scss";
+import Counter from "./component/counter";
 
 /* This const is not used within our app.
    Although we are passing it to the Headline Component
@@ -49,6 +50,10 @@ class App extends Component {
     return number + 1;
   }
 
+  handleCountChange(count) {
+    console.log(count);
+  }
+
   render() {
     const { posts } = this.props;
     const { hideBtn } = this.state;
@@ -62,12 +67,13 @@ class App extends Component {
       <div className="App" data-test="appComponent">
         <Header />
         <section className="main">
+          <Counter onCountChange={() => this.handleCountChange()} />
           <Headline
             header="Posts"
             desc="Click the button to render posts!"
             tempArr={tempArr}
+            hideText={hideBtn}
           />
-
           {!hideBtn && <SharedButton {...configButton} />}
 
           {posts.length > 0 && (
