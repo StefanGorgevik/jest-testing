@@ -1,7 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Headline from "./index";
-import App from "./App";
 
 import { findByTestAtrr, checkProps } from "../../../Utils";
 
@@ -38,7 +37,7 @@ describe("Headline Component", () => {
       const props = {
         header: "Test Header",
         desc: "Test Desc",
-        hideText: false,
+        hideText: true,
       };
       wrapper = setUp(props);
     });
@@ -53,16 +52,7 @@ describe("Headline Component", () => {
       expect(h1.length).toBe(1);
     });
 
-    it("Should render a desc", () => {
-      const desc = findByTestAtrr(wrapper, "desc");
-      expect(desc.length).toBe(1);
-    });
-    it("Should not render a desc if getPosts button is clicked", () => {
-      const app = shallow(<App/>);
-      const button = findByTestAtrr(app, 'buttonComponent');
-      button.simulate('click');
-      const mockFunc = jest.fn();
-      const ca
+    it("Should render a desc if button is shown", () => {
       const desc = findByTestAtrr(wrapper, "desc");
       expect(desc.length).toBe(1);
     });
