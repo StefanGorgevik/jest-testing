@@ -14,8 +14,10 @@ function App() {
       <button onClick={decrement}>Down</button>
 
       <div data-test="showWrapper">
-        {show && <p>HELLO</p>}
-        <button onClick={() => setShow(!show)}>Show</button>
+        {show && <p data-test="paragraphElement">HELLO</p>}
+        <button data-test="button" onClick={() => setShow(!show)}>
+          Show
+        </button>
       </div>
     </div>
   );
