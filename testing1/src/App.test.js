@@ -1,9 +1,7 @@
 import React from "react";
 import App from "./App";
 import { shallow } from "enzyme";
-import { findByTestAtrr, testStore } from "../Utils";
-import userEvent from "@testing-library/user-event";
-import { render, screen } from "@testing-library/react";
+import { findByTestAtrr } from "../Utils/index";
 
 // const setUp = (initialState = {}) => {
 //   const store = testStore(initialState);
@@ -55,22 +53,28 @@ import { render, screen } from "@testing-library/react";
 // });
 
 describe("App Component", () => {
+  let component;
+  beforeEach(() => {
+    component = shallow(<App />);
+  });
+
   it("should render without errors", () => {
-    const component = shallow(<App />);
     expect(component.length).toBe(1);
   });
 
   it("should render a wrapper for button and text", () => {
-    const component = shallow(<App />);
-    const wrapper = component.find(`[data-test='showWrapper']`);
-    expect(wrapper.length).toBe(1);
+    const showWrapper = findByTestAtrr(component, "showWrapper");
+    expect(showWrapper.length).toBe(1);
   });
 
   it("should not render text if button is not clicked yet", () => {
-    const component = shallow(<App />);
-    const showWrapper = component.find(`[data-test='showWrapper']`);
-    const paragraph = showWrapper.find("p");
-    console.log(paragraph);
-    expect(paragraph.length).toBe(0);
+    const p = findByTestAtrr(component, "paragraphElement");
+    expect(p.length).toBe(0);
+  });
+
+  it("should render text if button is clicked ", () => {
+    findByTestAtrr(component, "showButton").simulate("click");
+    const p = findByTestAtrr(component, "paragraphElement");
+    expect(p.length).toBe(1);
   });
 });
