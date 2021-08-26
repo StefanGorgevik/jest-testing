@@ -14,24 +14,28 @@ const setUp = () => shallow(<App />);
 
 const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test='${val}']`);
 
-test("renders non-empty component without crashing", () => {
-  const wrapper = setUp(); //shallow returns a wrapper with the element
-  const appComponent = findByTestAttr(wrapper, "component-app");
-  expect(appComponent.length).toBe(1);
+describe("App renders successfully", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = setUp();
+  });
+
+  test("renders non-empty component without crashing", () => {
+    const appComponent = findByTestAttr(wrapper, "component-app");
+    expect(appComponent.length).toBe(1);
+  });
+
+  test("renders increment button", () => {
+    const buttonComponent = findByTestAttr(wrapper, "increment-button");
+    expect(buttonComponent.length).toBe(1);
+  });
+
+  test("renders counter display", () => {
+    const counterDisplay = findByTestAttr(wrapper, "counter-display");
+    expect(counterDisplay.length).toBe(1);
+  });
+
+  test("counter display starts at 0", () => {});
+
+  test("clicking button increments counter display", () => {});
 });
-
-test("renders increment button", () => {
-  const wrapper = setUp(); //shallow returns a wrapper with the element
-  const buttonComponent = findByTestAttr(wrapper, "increment-button");
-  expect(buttonComponent.length).toBe(1);
-});
-
-test("renders counter display", () => {
-  const wrapper = setUp(); //shallow returns a wrapper with the element
-  const counterDisplay = findByTestAttr(wrapper, "counter-display");
-  expect(counterDisplay.length).toBe(1);
-});
-
-test("counter display starts at 0", () => {});
-
-test("clicking button increments counter display", () => {});
