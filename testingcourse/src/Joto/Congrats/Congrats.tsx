@@ -1,6 +1,10 @@
 import React from "react";
 
-const Congrats = ({ success }) => {
+interface CongratsProps {
+  success: boolean
+}
+
+const Congrats: React.FC<CongratsProps> = ({ success }) => {
   return success ? (
     <div data-test="component-congrats">
       <span data-test="congrats-message">
