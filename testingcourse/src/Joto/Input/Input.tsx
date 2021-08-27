@@ -1,5 +1,11 @@
 import React from 'react';
 
-const Input = () => {
+interface InputProps {
+
+}
+
+const Input: React.FC<InputProps> = () => {
     return (<div data-test='component-input'></div>)
 }
+
+export default Input;
