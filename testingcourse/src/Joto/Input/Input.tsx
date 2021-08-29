@@ -7,7 +7,7 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({ success, secretWord }) => {
     const [currentGuess, setCurrentGuess] = useState('');
 
-    const submitHandler = (e) => {
+    const submitHandler = (e: React.MouseEvent<HTMLElement>): void => {
         e.preventDefault();
         setCurrentGuess('');
     }
